@@ -1,118 +1,89 @@
-using System;
-using System.Collections;
 using UnityEngine;
 
 namespace com.outrealxr.avatars
 {
+    [RequireComponent(typeof(AvatarView))]
     public class AvatarModel : MonoBehaviour
     {
         AvatarView view;
-        private string src;
-        bool isLocal;
-        Coroutine coroutine;
+
+        public int type;
+        public string src;
+        public bool isLoading;
+        public bool isLocal;
         IPlayerAnimation playerAnimation;
 
-        private CharacterHandle _handle;
+        public static AvatarModel instance;
 
         private void Awake()
         {
-            if ( _instance == null ) {
-                _instance = this;
-                if (transform.parent == null)
-                    DontDestroyOnLoad ( gameObject );
-            }
-            else
-            {
-                Destroy ( gameObject );
-            }
-            
             view = GetComponent<AvatarView>();
+            if (isLocal) instance = this;
         }
 
-        private void FixedUpdate()
+        private void Start()
         {
-            if (IsLoading()) view.progressText.text = $"{_handle.PercentComplete:P2}.";
+            view.RequestToReveal(src);
         }
 
-        public void SetUserid(int userid)
+        public void UpdateLoading(float amount)
         {
-            view.SetUserid(userid);
+            view.progressText.text = $"{amount:P2}";
         }
 
         public void SetSource(string src)
         {
             this.src = src;
-            view.SetLabel(src);
         }
 
-        public string GetSource()
+        internal void SetSFSPlayerAnimation(IPlayerAnimation playerAnimation)
         {
-            return src;
+            this.playerAnimation = playerAnimation;
         }
 
-        internal void SetSFSPlayerAnimation(IPlayerAnimation sfsPlayerAnimation)
+        public void SetIsLoading(bool val)
         {
-            this.playerAnimation = sfsPlayerAnimation;
+            if (view)
+            {
+                if(view.waitingVisual) view.waitingVisual.SetActive(val);
+                else Debug.Log($"[AvatarModel] View.waitingVisual on {gameObject} is missing?");
+                if (view.waitingVisual) view.loadingVisual.SetActive(val);
+                else Debug.Log($"[AvatarModel] View.loadingVisual on {gameObject} is missing?");
+            }
+            else
+            {
+                Debug.Log($"[AvatarModel] View on {gameObject} is missing?");
+            }
+            isLoading = val;
         }
 
-        public void SetQueued(bool queued)
+        public void Apply()
         {
-            view.waitingVisual.SetActive(queued);
-            view.progressText.gameObject.SetActive(!queued);
-            view.loadingVisual.SetActive(queued);
+            if (gameObject.activeInHierarchy) AvatarsProvider.instance.LoadAvatar(this);
+            else SetIsLoading(false);
         }
 
-        public void HandleUpdate()
+        public void Complete(Avatar avatar)
         {
-            if(gameObject.activeInHierarchy)
-                coroutine = StartCoroutine(Download());
-        }
-
-        private IEnumerator Download() {
-            
-            if (view.Avatar != null)
-                ModelHandler.instance.FreeUpAvatar(_handle.Source, view.Avatar, view);
-            
-            _handle = ModelHandler.instance.LoadAvatar(src, transform);
-            yield return _handle;
-
-            ModelHandler.instance.AddToPool(src, view);
-
-
-            _handle.Character.transform.SetAsFirstSibling();
-            view.Reveal(_handle.Character);
-            coroutine = null;
+            avatar.SetOwner(this);
             playerAnimation?.ReadUserVariable();
+            SetIsLoading(false);
+            AvatarsQueue.instance.TryNext();
+        }
+
+        public void AvatarAssigned()
+        {
+            view.Reveal();
+        }
+
+        public void AvatarRemoved()
+        {
+            view.Conceal();
         }
 
         private void OnDisable()
         {
-            if(coroutine != null)
-                StopCoroutine(coroutine);
+            if (AvatarsProvider.instance.IsLoading(this)) AvatarsProvider.instance.currentOperation.Stop();
         }
-
-        public bool IsLoading() => _handle is {keepWaiting: true};
-
-        
-        private static AvatarModel _instance;
-
-        public static AvatarModel instance
-        {
-            get
-            {
-                if (_instance != null) return _instance;
-
-                _instance = FindObjectOfType<AvatarModel> ();
-                if (_instance != null) return _instance;
-                
-                var obj = new GameObject {
-                    name = nameof(AvatarModel)
-                };
-                
-                _instance = obj.AddComponent<AvatarModel> ();
-                return _instance;
-            }
-        }
-        
     }
 }

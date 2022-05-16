@@ -1,16 +1,13 @@
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace com.outrealxr.avatars
 {
+    [RequireComponent(typeof(AvatarController))]
     public class AvatarView : MonoBehaviour
     {
-        AvatarsController controller;
-
-        int userid;
-        string label;
+        AvatarController controller;
 
         public GameObject Avatar { get; private set; }
 
@@ -18,44 +15,38 @@ namespace com.outrealxr.avatars
         public GameObject loadingVisual, waitingVisual;
         public UnityEvent OnReveal, OnConceal;
 
+        private void Awake()
+        {
+            controller = GetComponent<AvatarController>();
+        }
+
         private void Start()
         {
-            controller = FindObjectOfType<AvatarsController>();
             if(progressText == null) progressText = GetComponentInChildren<TextMeshPro>();
-        }
-
-        public void SetUserid(int userid)
-        {
-            this.userid = userid;
-        }
-
-        public void SetLabel(string label)
-        {
-            this.label = label;
         }
 
         /// <summary>
         /// Must be called by input system whenever user hovers mouse on a collider of avatar
         /// </summary>
-        public void RequestToReveal()
+        public void RequestToReveal(string newLabel)
         {
-            if (Avatar == null && !loadingVisual.activeSelf) controller.UpdateModel(userid, label);
+            if (Avatar == null && !loadingVisual.activeSelf) controller.UpdateModel(newLabel);
         }
 
-        internal void Reveal(GameObject avatar)
+        internal void Reveal()
         {
-            Avatar = avatar;
+            Avatar = GetComponentInChildren<Avatar>().gameObject;
             OnReveal.Invoke();
             
-            if (avatar == null) return;
+            if (Avatar == null) return;
 
-            var animator = avatar.GetComponent<Animator>();
+            var animator = Avatar.GetComponent<Animator>();
  
             if (animator == null) return;
             
             animator.applyRootMotion = false;
-            var animatorParameters = avatar.GetComponent<AnimatorParameters>();
-            if (animatorParameters == null) avatar.AddComponent<AnimatorParameters>();
+            var animatorParameters = Avatar.GetComponent<AnimatorParameters>();
+            if (animatorParameters == null) Avatar.AddComponent<AnimatorParameters>();
         }
 
         internal void Conceal()
