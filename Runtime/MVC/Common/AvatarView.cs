@@ -36,17 +36,11 @@ namespace com.outrealxr.avatars
         internal void Reveal()
         {
             avatar = GetComponentInChildren<Avatar>();
-            OnReveal.Invoke();
-            
             if (avatar == null) return;
-
             var animator = avatar.GetComponent<Animator>();
- 
             if (animator == null) return;
-            
             animator.applyRootMotion = false;
-            var animatorParameters = avatar.gameObject.GetComponent<AnimatorParameters>();
-            if (animatorParameters == null) avatar.gameObject.AddComponent<AnimatorParameters>();
+            OnReveal.Invoke();
         }
 
         internal void Conceal()

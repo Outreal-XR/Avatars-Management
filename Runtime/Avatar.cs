@@ -12,7 +12,7 @@ namespace com.outrealxr.avatars
             this.owner = owner;
             transform.parent = this.owner ? this.owner.transform : AvatarsProvider.instance.transform;
             transform.localPosition = Vector3.zero;
-            transform.rotation = Quaternion.identity;
+            transform.localRotation = Quaternion.identity;
             gameObject.SetActive(this.owner);
             if (this.owner) this.owner.AvatarAssigned();
         }
