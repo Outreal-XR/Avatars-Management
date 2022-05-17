@@ -12,5 +12,10 @@ namespace com.outrealxr.avatars
         }
 
         public abstract void UpdateLocalModel(string src);
+
+        public virtual void ToggleSelection(bool val)
+        {
+            AvatarLocalView.instance.view.SetActive(val);
+        }
     }
 }
