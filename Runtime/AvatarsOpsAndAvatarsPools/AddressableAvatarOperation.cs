@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceLocations;
 
 namespace com.outrealxr.avatars
 {
     [RequireComponent(typeof(AddressableAvatarPool))]
     public class AddressableAvatarOperation : AvatarLoadingOperation
     {
-
+        public string defaultKey = "yBot";
         Coroutine coroutine;
 
         private void Awake()
@@ -27,11 +28,27 @@ namespace com.outrealxr.avatars
 
         private IEnumerator Download(AvatarModel model)
         {
-            AsyncOperationHandle<GameObject> handle = Addressables.InstantiateAsync(model.src);
-            yield return handle;
-            avatarsPool.AddAvatar(handle.Result.GetComponent<Avatar>(), model.src);
-            model.Complete(handle.Result.GetComponent<Avatar>());
-            Debug.Log($"[AddressableAvatarOperation] Loaded {model.src}");
+            string src = model.src;
+            Avatar avatar;
+            AsyncOperationHandle<IList<IResourceLocation>> locationsHandle = Addressables.LoadResourceLocationsAsync(model.src);
+            yield return locationsHandle;
+            AsyncOperationHandle<GameObject> handle;
+            if (locationsHandle.Result.Count > 0)
+            {
+                handle = Addressables.InstantiateAsync(model.src);
+                yield return handle;
+                avatar = handle.Result.GetComponent<Avatar>();
+                Debug.Log($"[AddressableAvatarOperation] Loaded {model.src}");
+                avatarsPool.AddAvatar(avatar, src);
+                model.Complete(avatar);
+            }
+            else
+            {
+                Debug.Log($"[AddressableAvatarOperation] Failed to load {model.src}. Using {defaultKey} instead");
+                model.src = defaultKey;
+                Handle(model);
+            }
+            
         }
 
         public override void Stop()
