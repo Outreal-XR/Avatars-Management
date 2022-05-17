@@ -9,7 +9,7 @@ namespace com.outrealxr.avatars
     {
         AvatarController controller;
 
-        public GameObject Avatar { get; private set; }
+        public Avatar avatar { get; private set; }
 
         public TextMeshPro progressText;
         public GameObject loadingVisual, waitingVisual;
@@ -28,30 +28,30 @@ namespace com.outrealxr.avatars
         /// <summary>
         /// Must be called by input system whenever user hovers mouse on a collider of avatar
         /// </summary>
-        public void RequestToReveal(string newLabel)
+        public void RequestToReveal(string src)
         {
-            if (Avatar == null && !loadingVisual.activeSelf) controller.UpdateModel(newLabel);
+            if (!loadingVisual.activeSelf) controller.UpdateModel(src);
         }
 
         internal void Reveal()
         {
-            Avatar = GetComponentInChildren<Avatar>().gameObject;
+            avatar = GetComponentInChildren<Avatar>();
             OnReveal.Invoke();
             
-            if (Avatar == null) return;
+            if (avatar == null) return;
 
-            var animator = Avatar.GetComponent<Animator>();
+            var animator = avatar.GetComponent<Animator>();
  
             if (animator == null) return;
             
             animator.applyRootMotion = false;
-            var animatorParameters = Avatar.GetComponent<AnimatorParameters>();
-            if (animatorParameters == null) Avatar.AddComponent<AnimatorParameters>();
+            var animatorParameters = avatar.gameObject.GetComponent<AnimatorParameters>();
+            if (animatorParameters == null) avatar.gameObject.AddComponent<AnimatorParameters>();
         }
 
         internal void Conceal()
         {
-            Avatar = null;
+            avatar = null;
             OnConceal.Invoke();
         }
     }

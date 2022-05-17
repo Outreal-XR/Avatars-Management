@@ -8,12 +8,13 @@ namespace com.outrealxr.avatars
 
         public void SetOwner(AvatarModel owner)
         {
-            if (this.owner != null) owner.AvatarRemoved();
+            if (this.owner) this.owner.AvatarRemoved();
             this.owner = owner;
-            transform.parent = owner.transform;
+            transform.parent = this.owner ? this.owner.transform : AvatarsProvider.instance.transform;
             transform.localPosition = Vector3.zero;
             transform.rotation = Quaternion.identity;
-            this.owner.AvatarAssigned();
+            gameObject.SetActive(this.owner);
+            if (this.owner) this.owner.AvatarAssigned();
         }
     }
 }

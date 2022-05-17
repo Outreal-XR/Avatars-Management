@@ -25,10 +25,17 @@ namespace com.outrealxr.avatars
 
         public void TryNext()
         {
-            if (models.Count > 0 && (current == null || !current.isLoading))
+            if (models.Count > 0)
             {
-                current = models.Dequeue();
-                current.Apply();
+                if (current == null || !current.isLoading)
+                {
+                    current = models.Dequeue();
+                    current.Apply();
+                }
+            }
+            else
+            {
+                current = null;
             }
         }
     }

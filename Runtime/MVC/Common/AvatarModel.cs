@@ -6,6 +6,7 @@ namespace com.outrealxr.avatars
     public class AvatarModel : MonoBehaviour
     {
         AvatarView view;
+        Avatar current;
 
         public int type;
         public string src;
@@ -18,12 +19,18 @@ namespace com.outrealxr.avatars
         private void Awake()
         {
             view = GetComponent<AvatarView>();
-            if (isLocal) instance = this;
+            SetIsLocal(isLocal);
         }
 
         private void Start()
         {
             view.RequestToReveal(src);
+        }
+
+        public void SetIsLocal(bool val)
+        {
+            isLocal = val;
+            if (isLocal) instance = this;
         }
 
         public void UpdateLoading(float amount)
@@ -60,13 +67,21 @@ namespace com.outrealxr.avatars
         public void Apply()
         {
             if (gameObject.activeInHierarchy) AvatarsProvider.instance.LoadAvatar(this);
-            else SetIsLoading(false);
+            else Complete(current);
         }
 
         public void Complete(Avatar avatar)
         {
-            avatar.SetOwner(this);
-            playerAnimation?.ReadUserVariable();
+            if(current)
+            {
+                current.SetOwner(null);
+            }
+            current = avatar;
+            if (current)
+            {
+                current.SetOwner(this);
+                playerAnimation?.ReadUserVariable();
+            }
             SetIsLoading(false);
             AvatarsQueue.instance.TryNext();
         }

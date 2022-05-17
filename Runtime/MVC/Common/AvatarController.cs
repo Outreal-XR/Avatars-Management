@@ -11,6 +11,11 @@ namespace com.outrealxr.avatars
             model = GetComponent<AvatarModel>();
         }
 
+        public void RequestToRevealItself()
+        {
+            UpdateModel(model.src);
+        }
+
         public void UpdateModel(string src)
         {
             model.SetSource(src);
