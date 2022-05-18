@@ -12,7 +12,7 @@ namespace com.outrealxr.avatars
     {
         public string defaultKey = "yBot";
         Coroutine coroutine;
-
+        
         private void Awake()
         {
             avatarsPool = GetComponent<AddressableAvatarPool>();
@@ -44,7 +44,7 @@ namespace com.outrealxr.avatars
             }
             else
             {
-                Debug.Log($"[AddressableAvatarOperation] Failed to load {model.src}. Using {defaultKey} instead");
+                Debug.Log($"[AddressableAvatarOperation] Failed to load {model.src}. Using {defaultKey} instead with addressable avatars.");
                 model.src = defaultKey;
                 Handle(model);
             }

@@ -135,7 +135,12 @@ PrefabInstance:
     - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}
       propertyPath: src
-      value: Samples/ybot -  Variant
+      value: https://d1a370nemizbjq.cloudfront.net/468dc0c7-0f7d-4c11-a885-68281eb2c79b.glb
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
+        type: 3}
+      propertyPath: type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}
@@ -290,7 +295,12 @@ PrefabInstance:
     - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}
       propertyPath: src
-      value: Samples/ybot - standard Variant
+      value: https://d1a370nemizbjq.cloudfront.net/468dc0c7-0f7d-4c11-a885-68281eb2c79b.glb
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
+        type: 3}
+      propertyPath: type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4227529286283254989, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}
@@ -1371,7 +1381,12 @@ PrefabInstance:
     - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}
       propertyPath: src
-      value: Samples/ybot - standard Variant
+      value: https://d1a370nemizbjq.cloudfront.net/468dc0c7-0f7d-4c11-a885-68281eb2c79b.glb
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
+        type: 3}
+      propertyPath: type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4227529286283254989, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}
@@ -2393,7 +2408,12 @@ PrefabInstance:
     - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}
       propertyPath: src
-      value: Samples/ybot - green Variant
+      value: https://d1a370nemizbjq.cloudfront.net/468dc0c7-0f7d-4c11-a885-68281eb2c79b.glb
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
+        type: 3}
+      propertyPath: type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4227529286283254989, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}
@@ -2509,7 +2529,12 @@ PrefabInstance:
     - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}
       propertyPath: src
-      value: Samples/ybot - Variant
+      value: https://d1a370nemizbjq.cloudfront.net/468dc0c7-0f7d-4c11-a885-68281eb2c79b.glb
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
+        type: 3}
+      propertyPath: type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4227529286283254989, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}
@@ -2594,7 +2619,12 @@ PrefabInstance:
     - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}
       propertyPath: src
-      value: Samples/ybot - green Variant
+      value: https://d1a370nemizbjq.cloudfront.net/468dc0c7-0f7d-4c11-a885-68281eb2c79b.glb
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
+        type: 3}
+      propertyPath: type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4227529286283254989, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}
@@ -2679,7 +2709,12 @@ PrefabInstance:
     - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}
       propertyPath: src
-      value: Samples/ybot - green Variant
+      value: https://d1a370nemizbjq.cloudfront.net/468dc0c7-0f7d-4c11-a885-68281eb2c79b.glb
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
+        type: 3}
+      propertyPath: type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4227529286283254989, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}
@@ -2884,9 +2919,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   avatarsPool: {fileID: 1959773678}
-  defaultKey: yBot
+  defaultKey: ybot
   runtimeAnimatorController: {fileID: 9100000, guid: 9ee7fea91045964429899515539a9973,
     type: 2}
+  addressableAvatarOperation: {fileID: 253186676}
 --- !u!114 &1959773678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3003,7 +3039,12 @@ PrefabInstance:
     - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}
       propertyPath: src
-      value: Samples/ybot - standard Variant
+      value: https://d1a370nemizbjq.cloudfront.net/468dc0c7-0f7d-4c11-a885-68281eb2c79b.glb
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
+        type: 3}
+      propertyPath: type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4227529286283254989, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}
@@ -3226,7 +3267,12 @@ PrefabInstance:
     - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}
       propertyPath: src
-      value: Samples/ybot - blue Variant
+      value: https://d1a370nemizbjq.cloudfront.net/468dc0c7-0f7d-4c11-a885-68281eb2c79b.glb
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
+        type: 3}
+      propertyPath: type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4227529286283254989, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}

@@ -10,6 +10,8 @@ namespace com.outrealxr.avatars
         private Coroutine _coroutine;
 
         [SerializeField] private RuntimeAnimatorController runtimeAnimatorController;
+        [SerializeField] private AddressableAvatarOperation addressableAvatarOperation;
+
         
         private void Awake()
         {
@@ -35,7 +37,10 @@ namespace com.outrealxr.avatars
                 avatarsPool.AddAvatar(avatar, src);
                 model.Complete(avatar);
             } else {
-                Debug.Log($"[RPMAvatarOperation] Failed to load {model.src}.");
+                Debug.Log($"[RPMAvatarOperation] Failed to load {model.src}. Using {defaultKey} instead with addressable avatars.");
+                model.src = defaultKey;
+                model.type = 0;
+                addressableAvatarOperation.Handle(model);
             }
         }
 
