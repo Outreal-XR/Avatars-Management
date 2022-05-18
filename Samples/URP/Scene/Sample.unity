@@ -626,6 +626,7 @@ Transform:
   m_Children:
   - {fileID: 253186675}
   - {fileID: 1212414290}
+  - {fileID: 1959773676}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -643,6 +644,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   avatarLoadingOperations:
   - {fileID: 253186676}
+  - {fileID: 1959773677}
   currentOperation: {fileID: 0}
 --- !u!114 &657080989
 MonoBehaviour:
@@ -2142,7 +2144,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1639238545}
   m_HandleRect: {fileID: 1639238544}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2772,6 +2774,65 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1940032295}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1959773675
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1959773676}
+  - component: {fileID: 1959773678}
+  - component: {fileID: 1959773677}
+  m_Layer: 0
+  m_Name: ReadyPlayerMeBased
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1959773676
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959773675}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 657080986}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1959773677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959773675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16bd3ca14981da7468f89ad1a0e27dd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  avatarsPool: {fileID: 1959773678}
+  defaultKey: yBot
+--- !u!114 &1959773678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959773675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f46aac82b66a444189ad2a6f06e6f81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxRPMAvatarCount: 2
 --- !u!1 &1972169925
 GameObject:
   m_ObjectHideFlags: 0
@@ -3287,7 +3348,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -0.00014536921, y: 0}
+  m_AnchoredPosition: {x: 0.000012181699, y: 0}
   m_SizeDelta: {x: 1280, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &2082742658
@@ -3482,7 +3543,12 @@ PrefabInstance:
     - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}
       propertyPath: src
-      value: Samples/ybot - red
+      value: https://d1a370nemizbjq.cloudfront.net/468dc0c7-0f7d-4c11-a885-68281eb2c79b.glb
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
+        type: 3}
+      propertyPath: type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}

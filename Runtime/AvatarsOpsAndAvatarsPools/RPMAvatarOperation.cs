@@ -20,7 +20,7 @@ namespace com.outrealxr.avatars
 
         private IEnumerator LoadAvatar(AvatarModel model) {
             string src = model.src;
-            var handle = RPMRequestHandle.Request(src);
+            var handle = RPMRequestHandle.Request(src, model.transform);
             yield return handle;
             
             if (handle.Character) {
@@ -29,9 +29,7 @@ namespace com.outrealxr.avatars
                 avatarsPool.AddAvatar(avatar, src);
                 model.Complete(avatar);
             } else {
-                Debug.Log($"[AddressableAvatarOperation] Failed to load {model.src}. Using {defaultKey} instead");
-                model.src = defaultKey;
-                Handle(model);
+                Debug.Log($"[RPMAvatarOperation] Failed to load {model.src}.");
             }
         }
 
