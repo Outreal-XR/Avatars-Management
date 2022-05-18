@@ -16,11 +16,9 @@ namespace com.outrealxr.avatars
 
         private void Start()
         {
-            if(PlayerPrefs.HasKey("LastSelectedSrc"))
-            {
-                AvatarLocalController.instance.UpdateLocalModel(PlayerPrefs.GetString("LastSelectedSrc"));
-            }
-            view.SetActive(!PlayerPrefs.HasKey("LastSelectedSrc"));
+            if(PlayerPrefs.HasKey(AvatarLocalController.PreKey))
+                AvatarLocalController.instance.UpdateLocalModel(PlayerPrefs.GetString(AvatarLocalController.PreKey));
+            view.SetActive(!PlayerPrefs.HasKey(AvatarLocalController.PreKey) && AvatarLocalController.promptUserOnStart);
         }
 
         private void Update()
@@ -31,7 +29,7 @@ namespace com.outrealxr.avatars
         public void Select(string src)
         {
             AvatarLocalController.instance.UpdateLocalModel(src);
-            PlayerPrefs.SetString("LastSelectedSrc", src);
+            PlayerPrefs.SetString(AvatarLocalController.PreKey, src);
         }
     }
 }
