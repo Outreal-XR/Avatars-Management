@@ -6,8 +6,10 @@ namespace com.outrealxr.avatars
 {
     public class RPMAvatarOperation : AvatarLoadingOperation
     {
-        public string defaultKey = "yBot";
+        [SerializeField] private string defaultKey = "yBot";
         private Coroutine _coroutine;
+
+        [SerializeField] private RuntimeAnimatorController runtimeAnimatorController;
         
         private void Awake()
         {
@@ -24,8 +26,12 @@ namespace com.outrealxr.avatars
             yield return handle;
             
             if (handle.Character) {
-                var avatar = handle.Character.AddComponent<Avatar>();
-                Debug.Log($"[AddressableAvatarOperation] Loaded {model.src}");
+                var avatar = handle.Character.GetComponent<Avatar>();
+                
+                var animator = handle.Character.GetComponent<Animator>();
+                animator.runtimeAnimatorController = runtimeAnimatorController;
+                    
+                Debug.Log($"[RPMAvatarOperation] Loaded {model.src}");
                 avatarsPool.AddAvatar(avatar, src);
                 model.Complete(avatar);
             } else {

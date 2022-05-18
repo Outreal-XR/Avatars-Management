@@ -202,6 +202,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: User (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 4227529286283254990, guid: 25f3cff8b45b1824187d11fa0b3fd706,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25f3cff8b45b1824187d11fa0b3fd706, type: 3}
 --- !u!4 &44117257 stripped
@@ -347,6 +352,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: User (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 4227529286283254990, guid: 25f3cff8b45b1824187d11fa0b3fd706,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25f3cff8b45b1824187d11fa0b3fd706, type: 3}
 --- !u!4 &299656242 stripped
@@ -365,7 +375,12 @@ PrefabInstance:
     - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}
       propertyPath: src
-      value: Samples/ybot - blue Variant
+      value: https://d1a370nemizbjq.cloudfront.net/468dc0c7-0f7d-4c11-a885-68281eb2c79b.glb
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
+        type: 3}
+      propertyPath: type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4227529286283254989, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}
@@ -445,7 +460,12 @@ PrefabInstance:
     - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}
       propertyPath: src
-      value: Samples/ybot - red Variant
+      value: https://d1a370nemizbjq.cloudfront.net/468dc0c7-0f7d-4c11-a885-68281eb2c79b.glb
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
+        type: 3}
+      propertyPath: type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4227529286283254989, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}
@@ -525,7 +545,12 @@ PrefabInstance:
     - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}
       propertyPath: src
-      value: Samples/ybot - blue
+      value: https://d1a370nemizbjq.cloudfront.net/468dc0c7-0f7d-4c11-a885-68281eb2c79b.glb
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
+        type: 3}
+      propertyPath: type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4227529286283254989, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}
@@ -776,7 +801,12 @@ PrefabInstance:
     - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}
       propertyPath: src
-      value: Samples/ybot - red Variant
+      value: https://d1a370nemizbjq.cloudfront.net/468dc0c7-0f7d-4c11-a885-68281eb2c79b.glb
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
+        type: 3}
+      propertyPath: type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}
@@ -1402,6 +1432,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: User (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227529286283254990, guid: 25f3cff8b45b1824187d11fa0b3fd706,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25f3cff8b45b1824187d11fa0b3fd706, type: 3}
@@ -2273,7 +2308,12 @@ PrefabInstance:
     - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}
       propertyPath: src
-      value: Samples/ybot - blue Variant
+      value: https://d1a370nemizbjq.cloudfront.net/468dc0c7-0f7d-4c11-a885-68281eb2c79b.glb
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
+        type: 3}
+      propertyPath: type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4227529286283254989, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}
@@ -2415,6 +2455,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: User (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 4227529286283254990, guid: 25f3cff8b45b1824187d11fa0b3fd706,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25f3cff8b45b1824187d11fa0b3fd706, type: 3}
 --- !u!4 &1705098087 stripped
@@ -2526,6 +2571,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: User (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 4227529286283254990, guid: 25f3cff8b45b1824187d11fa0b3fd706,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25f3cff8b45b1824187d11fa0b3fd706, type: 3}
 --- !u!4 &1867105358 stripped
@@ -2605,6 +2655,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: User (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227529286283254990, guid: 25f3cff8b45b1824187d11fa0b3fd706,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25f3cff8b45b1824187d11fa0b3fd706, type: 3}
@@ -2686,6 +2741,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: User (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 4227529286283254990, guid: 25f3cff8b45b1824187d11fa0b3fd706,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25f3cff8b45b1824187d11fa0b3fd706, type: 3}
 --- !u!4 &1896967913 stripped
@@ -2704,7 +2764,12 @@ PrefabInstance:
     - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}
       propertyPath: src
-      value: Samples/ybot - red Variant
+      value: https://d1a370nemizbjq.cloudfront.net/468dc0c7-0f7d-4c11-a885-68281eb2c79b.glb
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
+        type: 3}
+      propertyPath: type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4227529286283254989, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}
@@ -2820,6 +2885,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   avatarsPool: {fileID: 1959773678}
   defaultKey: yBot
+  runtimeAnimatorController: {fileID: 9100000, guid: 9ee7fea91045964429899515539a9973,
+    type: 2}
 --- !u!114 &1959773678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2997,6 +3064,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: User (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227529286283254990, guid: 25f3cff8b45b1824187d11fa0b3fd706,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25f3cff8b45b1824187d11fa0b3fd706, type: 3}
@@ -3215,6 +3287,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: User (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227529286283254990, guid: 25f3cff8b45b1824187d11fa0b3fd706,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25f3cff8b45b1824187d11fa0b3fd706, type: 3}
@@ -3540,6 +3617,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 952470860}
     m_Modifications:
+    - target: {fileID: 27561159168271834, guid: 25f3cff8b45b1824187d11fa0b3fd706,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4227529286283254988, guid: 25f3cff8b45b1824187d11fa0b3fd706,
         type: 3}
       propertyPath: src

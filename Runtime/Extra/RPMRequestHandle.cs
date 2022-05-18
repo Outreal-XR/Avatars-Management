@@ -13,6 +13,7 @@ namespace com.outrealxr.avatars
             var avatarLoader = new AvatarLoader();
             avatarLoader.LoadAvatar(url, avatar => { }, (avatar, metaData) => {
                 readyPlayerMeHandler.Character = avatar;
+                readyPlayerMeHandler.Character.AddComponent<Avatar>();
                 readyPlayerMeHandler.Character.transform.SetParent(parent);
                 readyPlayerMeHandler.Character.transform.localPosition = Vector3.zero;
                 readyPlayerMeHandler.Character.transform.localRotation = Quaternion.identity;
@@ -26,6 +27,6 @@ namespace com.outrealxr.avatars
         public string Source;
         public GameObject Character;
         public bool IsReady = false;
-        public override bool keepWaiting => IsReady;
+        public override bool keepWaiting => !IsReady;
     }
 }
