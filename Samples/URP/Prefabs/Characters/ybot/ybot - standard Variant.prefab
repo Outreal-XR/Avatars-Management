@@ -58,7 +58,11 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: 6454d291a60412e4bb3c417f861e0b2d, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 9ee7fea91045964429899515539a9973, type: 2}
+      objectReference: {fileID: 9100000, guid: 092611ce6cdb27b4985084bc51ad7bde, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 6454d291a60412e4bb3c417f861e0b2d, type: 3}
+      propertyPath: m_UpdateMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6454d291a60412e4bb3c417f861e0b2d, type: 3}
 --- !u!1 &3288334687750258463 stripped
@@ -79,6 +83,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
+  type: 0
 --- !u!114 &1379113753609825938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,4 +100,5 @@ MonoBehaviour:
   DirectionParameter: Strafe
   AnimSpeedMultiplier: 1
   LerpSpeed: 25
-  timeType: 0
+  timeType: 1
+  animator: {fileID: 0}

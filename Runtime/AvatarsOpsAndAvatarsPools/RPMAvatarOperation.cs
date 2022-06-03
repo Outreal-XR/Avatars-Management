@@ -18,17 +18,17 @@ namespace com.outrealxr.avatars
             avatarsPool = GetComponent<RPMAvatarPool>();
         }
 
-        public override void Handle(AvatarModel model) {
-            _coroutine = StartCoroutine(LoadAvatar(model));
+        public override void Handle(AvatarModel model, string src) {
+            _coroutine = StartCoroutine(LoadAvatar(model, src));
         }
 
-        private IEnumerator LoadAvatar(AvatarModel model) {
-            string src = model.src;
+        private IEnumerator LoadAvatar(AvatarModel model, string src) {
             var handle = RPMRequestHandle.Request(src, model.transform);
             yield return handle;
             
             if (handle.Character) {
                 var avatar = handle.Character.GetComponent<Avatar>();
+                avatar.type = AvatarsProvider.instance.avatarLoadingOperations.IndexOf(this);
                 
                 var animator = handle.Character.GetComponent<Animator>();
                 animator.runtimeAnimatorController = runtimeAnimatorController;
@@ -38,9 +38,7 @@ namespace com.outrealxr.avatars
                 model.Complete(avatar);
             } else {
                 Debug.Log($"[RPMAvatarOperation] Failed to load {model.src}. Using {defaultKey} instead with addressable avatars.");
-                model.src = defaultKey;
-                model.type = 0;
-                addressableAvatarOperation.Handle(model);
+                addressableAvatarOperation.Handle(model, defaultKey);
             }
         }
 

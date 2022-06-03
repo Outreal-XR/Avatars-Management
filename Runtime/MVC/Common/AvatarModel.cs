@@ -64,21 +64,33 @@ namespace com.outrealxr.avatars
             isLoading = val;
         }
 
-        public void Apply()
+        public void Apply(int type, string url)
         {
-            if (gameObject.activeInHierarchy) AvatarsProvider.instance.LoadAvatar(this);
+            if (gameObject.activeInHierarchy) AvatarsProvider.instance.LoadAvatar(this, type, url);
             else Complete(current);
         }
+        
+        
+        public void FreeUpAvatar() {
+            if (!current) return;
 
-        public void Complete(Avatar avatar)
-        {
-            if(current)
-            {
-                current.SetOwner(null);
+            switch (current.type) {
+                case 0:
+                    current.SetOwner(null);
+                    break;
+                case 1:
+                    Destroy(current.gameObject);
+                    break;
             }
+            
+        }
+
+
+        public void Complete(Avatar avatar) {
+            FreeUpAvatar();
+            
             current = avatar;
-            if (current)
-            {
+            if (current) {
                 current.SetOwner(this);
                 playerAnimation?.ReadUserVariable();
             }

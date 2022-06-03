@@ -7,11 +7,11 @@ namespace com.outrealxr.avatars
     public class RPMAvatarPool : AvatarsPool
     {
         [SerializeField, Range(2, 100)] private int maxRPMAvatarCount = 2;
-        private readonly List<Avatar> _avatars = new List<Avatar>();
+        private readonly List<Avatar> _avatars = new();
         
         public override void AddAvatar(Avatar avatar, string src) {
             if (IsPoolMaxed("")) 
-                Dispose(_avatars[_avatars.Count - 1]);
+                Dispose(_avatars[^1]);
 
             _avatars.Add(avatar);
         }
@@ -25,7 +25,8 @@ namespace com.outrealxr.avatars
         }
 
         private void Dispose(Avatar avatar) {
-            avatar.owner.AvatarRemoved();
+            if (!avatar) return;
+            if (avatar.owner) avatar.owner.AvatarRemoved();
             Destroy(avatar.gameObject);
         }
 

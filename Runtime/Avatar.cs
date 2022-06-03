@@ -5,6 +5,7 @@ namespace com.outrealxr.avatars
     public class Avatar : MonoBehaviour
     {
         public AvatarModel owner;
+        public int type;
 
         public void SetOwner(AvatarModel owner)
         {

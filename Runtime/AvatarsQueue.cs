@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,36 +7,48 @@ namespace com.outrealxr.avatars
 {
     public class AvatarsQueue : MonoBehaviour
     {
-        public Queue<AvatarModel> models = new Queue<AvatarModel>();
+
+        public class AvatarModelQueue
+        {
+            public int AvatarType;
+            public string url;
+            public AvatarModel model;
+        }
+        
+        public Queue<AvatarModelQueue> queue = new();
 
         public static AvatarsQueue instance;
-        public static AvatarModel current;
+        public static AvatarModelQueue current;
 
+        [SerializeField] private AvatarsProvider provider;
+        
         private void Awake()
         {
             instance = this;
-        }
 
+            if (!provider) provider = GetComponent<AvatarsProvider>();
+        }
+        
         public void Enqueue(AvatarModel model)
         {
             model.SetIsLoading(true);
-            models.Enqueue(model);
+            
+            queue.Enqueue(new AvatarModelQueue{
+                AvatarType = model.type,
+                url = model.src,
+                model = model
+            });
+            
             TryNext();
         }
 
         public void TryNext()
         {
-            if (models.Count > 0)
-            {
-                if (current == null || !current.isLoading)
-                {
-                    current = models.Dequeue();
-                    current.Apply();
-                }
-            }
-            else
-            {
-                current = null;
+            if (queue.Count == 0) return;
+
+            if (current == null || !current.model.isLoading) {
+                current = queue.Dequeue();
+                current.model.Apply(current.AvatarType, current.url);
             }
         }
     }

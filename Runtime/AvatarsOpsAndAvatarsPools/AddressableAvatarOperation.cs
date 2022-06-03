@@ -18,35 +18,34 @@ namespace com.outrealxr.avatars
             avatarsPool = GetComponent<AddressableAvatarPool>();
         }
 
-        public override void Handle(AvatarModel model)
+        public override void Handle(AvatarModel model, string src)
         {
-            Avatar avatar = avatarsPool.GetInactive(model.src);
+            Avatar avatar = avatarsPool.GetInactive(src);
             if (avatar != null) model.Complete(avatar);
-            else if (avatarsPool.IsPoolMaxed(model.src)) model.Complete(avatarsPool.GetNextAvailable(model.src));
-            else coroutine = StartCoroutine(Download(model));
+            else if (avatarsPool.IsPoolMaxed(src)) model.Complete(avatarsPool.GetNextAvailable(src));
+            else coroutine = StartCoroutine(Download(model, src));
         }
 
-        private IEnumerator Download(AvatarModel model)
+        private IEnumerator Download(AvatarModel model, string src)
         {
-            string src = model.src;
             Avatar avatar;
-            AsyncOperationHandle<IList<IResourceLocation>> locationsHandle = Addressables.LoadResourceLocationsAsync(model.src);
+            AsyncOperationHandle<IList<IResourceLocation>> locationsHandle = Addressables.LoadResourceLocationsAsync(src);
             yield return locationsHandle;
             AsyncOperationHandle<GameObject> handle;
             if (locationsHandle.Result.Count > 0)
             {
-                handle = Addressables.InstantiateAsync(model.src);
+                handle = Addressables.InstantiateAsync(src);
                 yield return handle;
                 avatar = handle.Result.GetComponent<Avatar>();
-                Debug.Log($"[AddressableAvatarOperation] Loaded {model.src}");
+                avatar.type = AvatarsProvider.instance.avatarLoadingOperations.IndexOf(this);
+                Debug.Log($"[AddressableAvatarOperation] Loaded {src}");
                 avatarsPool.AddAvatar(avatar, src);
                 model.Complete(avatar);
             }
             else
             {
-                Debug.Log($"[AddressableAvatarOperation] Failed to load {model.src}. Using {defaultKey} instead with addressable avatars.");
-                model.src = defaultKey;
-                Handle(model);
+                Debug.Log($"[AddressableAvatarOperation] Failed to load {src}. Using {defaultKey} instead with addressable avatars.");
+                Handle(model, defaultKey);
             }
             
         }
