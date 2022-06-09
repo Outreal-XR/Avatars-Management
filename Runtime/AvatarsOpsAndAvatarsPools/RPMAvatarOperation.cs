@@ -35,6 +35,7 @@ namespace com.outrealxr.avatars
                 yield return new WaitForSeconds(0.2f);
                 timeWaited += 0.2f;
 
+                //If we dont get the model in time, just dispose and delete it.
                 if (timeWaited > 5f) {
                     gltfAsset.Dispose();
                     Destroy(gltfHolder);
@@ -48,15 +49,15 @@ namespace com.outrealxr.avatars
             
             var obj = gltfHolder.transform.GetChild(0).GetChild(0).gameObject;
             obj.name = "Avatar";
-        
+            
+            //Reorganize the object hierarchy to fit the RPM avatar 
             var armature = new GameObject("Armature");
             armature.transform.SetParent(obj.transform);
-
             var hips = obj.transform.Find("Hips");
             hips.SetParent(armature.transform);
-
+            
+            //Add the animator and assign the controller and avatar
             var animator = obj.AddComponent<Animator>();
-
             animator.runtimeAnimatorController = runtimeAnimatorController;
             animator.avatar = animationAvatar;
             
