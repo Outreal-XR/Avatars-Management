@@ -7,8 +7,8 @@ namespace com.outrealxr.avatars
 
         public enum TimeType
         {
-            deltaTime,
-            fixedDeltaTime
+            fixedDeltaTime,
+            deltaTime
         }
 
         public string SpeedParameter = "Speed";
