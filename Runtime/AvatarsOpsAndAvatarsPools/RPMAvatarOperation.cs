@@ -1,5 +1,5 @@
 using System.Collections;
-using ReadyPlayerMe;
+using GLTFast;
 using UnityEngine;
 
 namespace com.outrealxr.avatars
@@ -12,6 +12,7 @@ namespace com.outrealxr.avatars
         [SerializeField] private RuntimeAnimatorController runtimeAnimatorController;
         [SerializeField] private AddressableAvatarOperation addressableAvatarOperation;
 
+        [SerializeField] private UnityEngine.Avatar animationAvatar;
         
         private void Awake()
         {
@@ -23,23 +24,54 @@ namespace com.outrealxr.avatars
         }
 
         private IEnumerator LoadAvatar(AvatarModel model, string src) {
-            var handle = RPMRequestHandle.Request(src, model.transform);
-            yield return handle;
+            var gltfHolder = new GameObject(RPMAvatarPool.GltfHolderName);
+            var gltfAsset = gltfHolder.AddComponent<GltfAsset>();
             
-            if (handle.Character) {
-                var avatar = handle.Character.GetComponent<Avatar>();
-                avatar.type = AvatarsProvider.instance.avatarLoadingOperations.IndexOf(this);
-                
-                var animator = handle.Character.GetComponent<Animator>();
-                animator.runtimeAnimatorController = runtimeAnimatorController;
-                    
-                Debug.Log($"[RPMAvatarOperation] Loaded {model.src}");
-                avatarsPool.AddAvatar(avatar, src);
-                model.Complete(avatar);
-            } else {
-                Debug.Log($"[RPMAvatarOperation] Failed to load {model.src}. Using {defaultKey} instead with addressable avatars.");
-                addressableAvatarOperation.Handle(model, defaultKey);
+            var handle = gltfAsset.Load(src);
+            yield return handle;
+
+            var timeWaited = 0f;
+            while (gltfHolder.transform.childCount == 0) {
+                yield return new WaitForSeconds(0.2f);
+                timeWaited += 0.2f;
+
+                if (timeWaited > 5f) {
+                    gltfAsset.Dispose();
+                    Destroy(gltfHolder);
+                    OnLoadFailed(model);
+                    yield break;
+                }
             }
+
+            gltfHolder.transform.SetParent(model.transform);
+            gltfHolder.transform.localPosition = Vector3.zero;
+            
+            var obj = gltfHolder.transform.GetChild(0).GetChild(0).gameObject;
+            obj.name = "Avatar";
+        
+            var armature = new GameObject("Armature");
+            armature.transform.SetParent(obj.transform);
+
+            var hips = obj.transform.Find("Hips");
+            hips.SetParent(armature.transform);
+
+            var animator = obj.AddComponent<Animator>();
+
+            animator.runtimeAnimatorController = runtimeAnimatorController;
+            animator.avatar = animationAvatar;
+            
+            var avatar = obj.AddComponent<Avatar>();
+            avatar.SetOwner(model);
+            avatar.type = AvatarsProvider.instance.avatarLoadingOperations.IndexOf(this);
+            
+            Debug.Log($"[RPMAvatarOperation] Loaded {model.src}");
+            avatarsPool.AddAvatar(avatar, src);
+            model.Complete(avatar);
+        }
+
+        private void OnLoadFailed(AvatarModel model) {
+            Debug.Log($"[RPMAvatarOperation] Failed to load {model.src}. Using {defaultKey} instead with addressable avatars.");
+            addressableAvatarOperation.Handle(model, defaultKey);
         }
 
         public override void Stop() {
