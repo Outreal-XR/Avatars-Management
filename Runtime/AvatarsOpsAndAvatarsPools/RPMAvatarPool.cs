@@ -10,7 +10,7 @@ namespace com.outrealxr.avatars
         public const string GltfHolderName = "GLTF Holder";
         
         [SerializeField, Range(2, 100)] private int maxRPMAvatarCount = 2;
-        [SerializeField] private List<Avatar> _avatars = new();
+        private readonly List<Avatar> _avatars = new();
         
         public override void AddAvatar(Avatar avatar, string src) {
             if (IsPoolMaxed("")) {

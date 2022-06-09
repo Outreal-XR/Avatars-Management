@@ -64,6 +64,8 @@ namespace com.outrealxr.avatars
             var avatar = obj.AddComponent<Avatar>();
             avatar.SetOwner(model);
             avatar.type = AvatarsProvider.instance.avatarLoadingOperations.IndexOf(this);
+
+            obj.AddComponent<AnimatorParameters>();
             
             Debug.Log($"[RPMAvatarOperation] Loaded {model.src}");
             avatarsPool.AddAvatar(avatar, src);
