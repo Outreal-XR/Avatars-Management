@@ -39,12 +39,16 @@ namespace com.outrealxr.avatars
                 model = model
             });
             
-            TryNext();
+            if (queue.Count == 1)
+                TryNext();
         }
 
         public void TryNext()
         {
-            if (queue.Count == 0) return;
+            if (queue.Count == 0) {
+                current = null;
+                return;
+            }
 
             if (current == null || !current.model.isLoading) {
                 current = queue.Dequeue();

@@ -26,8 +26,7 @@ namespace com.outrealxr.avatars
             else coroutine = StartCoroutine(Download(model, src));
         }
 
-        private IEnumerator Download(AvatarModel model, string src)
-        {
+        private IEnumerator Download(AvatarModel model, string src) {
             Avatar avatar;
             AsyncOperationHandle<IList<IResourceLocation>> locationsHandle = Addressables.LoadResourceLocationsAsync(src);
             yield return locationsHandle;
