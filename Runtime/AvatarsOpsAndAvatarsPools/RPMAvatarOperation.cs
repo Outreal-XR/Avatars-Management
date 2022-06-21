@@ -27,6 +27,9 @@ namespace com.outrealxr.avatars
             var gltfHolder = new GameObject(RPMAvatarPool.GltfHolderName);
             var gltfAsset = gltfHolder.AddComponent<GltfAsset>();
             
+            gltfHolder.transform.SetParent(model.transform);
+            gltfHolder.transform.localPosition = Vector3.zero;
+            
             var handle = gltfAsset.Load(src);
             yield return handle;
 
@@ -38,15 +41,12 @@ namespace com.outrealxr.avatars
                 //If we dont get the model in time, just dispose and delete it.
                 if (timeWaited > 5f) {
                     gltfAsset.Dispose();
-                    Destroy(gltfHolder);
+                    Destroy(gltfHolder.gameObject);
                     OnLoadFailed(model);
                     yield break;
                 }
             }
 
-            gltfHolder.transform.SetParent(model.transform);
-            gltfHolder.transform.localPosition = Vector3.zero;
-            
             var obj = gltfHolder.transform.GetChild(0).GetChild(0).gameObject;
             obj.name = "Avatar";
             
