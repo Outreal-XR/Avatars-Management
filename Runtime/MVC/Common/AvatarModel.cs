@@ -29,7 +29,8 @@ namespace com.outrealxr.avatars
         }
 
         public void Reveal() {
-            view.RequestToReveal(src);
+            if (view.avatar == null)
+                view.RequestToReveal(src);
         }
 
         public void SetIsLocal(bool val)
@@ -87,7 +88,6 @@ namespace com.outrealxr.avatars
                     Destroy(current.gameObject);
                     break;
             }
-            
         }
 
 
