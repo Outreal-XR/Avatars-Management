@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace com.outrealxr.avatars
 {
@@ -24,6 +25,10 @@ namespace com.outrealxr.avatars
 
         private void Start()
         {
+            view.RequestToReveal(src);
+        }
+
+        public void Reveal() {
             view.RequestToReveal(src);
         }
 
@@ -86,6 +91,7 @@ namespace com.outrealxr.avatars
         }
 
 
+        [SerializeField] private UnityEvent OnAvatarComplete;
         public void Complete(Avatar avatar) {
             FreeUpAvatar();
             
@@ -95,6 +101,9 @@ namespace com.outrealxr.avatars
                 playerAnimation?.ReadUserVariable();
             }
             SetIsLoading(false);
+            
+            OnAvatarComplete?.Invoke();
+
             AvatarsQueue.instance.TryNext();
         }
 
