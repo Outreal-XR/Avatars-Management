@@ -23,11 +23,6 @@ namespace com.outrealxr.avatars
             SetIsLocal(isLocal);
         }
 
-        private void Start()
-        {
-            view.RequestToReveal(src);
-        }
-
         public void Reveal() {
             if (view.avatar == null)
                 view.RequestToReveal(src);
@@ -75,8 +70,7 @@ namespace com.outrealxr.avatars
             if (gameObject.activeInHierarchy) AvatarsProvider.instance.LoadAvatar(this, type, url);
             else Complete(current);
         }
-        
-        
+
         public void FreeUpAvatar() {
             if (!current) return;
 

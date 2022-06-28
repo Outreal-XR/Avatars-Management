@@ -22,6 +22,8 @@ namespace com.outrealxr.avatars
 
         [SerializeField] private AvatarsProvider provider;
         
+        [SerializeField] private int queueLimit = 5;
+        
         private void Awake()
         {
             instance = this;
@@ -38,6 +40,9 @@ namespace com.outrealxr.avatars
                 url = model.src,
                 model = model
             });
+
+            if (queue.Count > queueLimit)
+                queue.Dequeue();
             
             if (queue.Count == 1)
                 TryNext();
@@ -53,7 +58,8 @@ namespace com.outrealxr.avatars
             if (current == null || !current.model.isLoading) {
                 current = queue.Dequeue();
                 current.model.Apply(current.AvatarType, current.url);
-            }
+            } else if (current != null && !current.model) 
+                TryNext();
         }
     }
 }

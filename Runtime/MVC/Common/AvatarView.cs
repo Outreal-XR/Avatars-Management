@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -32,7 +33,7 @@ namespace com.outrealxr.avatars
         {
             if (!loadingVisual.activeSelf) controller.UpdateModel(src);
         }
-        
+
         internal void Reveal()
         {
             avatar = GetComponentInChildren<Avatar>();
