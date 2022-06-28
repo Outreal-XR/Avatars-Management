@@ -13,7 +13,7 @@ namespace com.outrealxr.avatars
         public Avatar avatar { get; private set; }
 
         public TextMeshPro progressText;
-        public GameObject loadingVisual, waitingVisual;
+        public GameObject loadingVisual, queuedVisual, dequeuedVisual;
         public UnityEvent OnReveal, OnConceal;
 
         private void Awake()

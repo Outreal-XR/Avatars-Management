@@ -53,10 +53,9 @@ namespace com.outrealxr.avatars
         {
             if (view)
             {
-                if(view.waitingVisual) view.waitingVisual.SetActive(val);
+                if(view.dequeuedVisual) view.dequeuedVisual.SetActive(false);
+                if(view.queuedVisual) view.queuedVisual.SetActive(val);
                 else Debug.Log($"[AvatarModel] View.waitingVisual on {gameObject} is missing?");
-                if (view.waitingVisual) view.loadingVisual.SetActive(val);
-                else Debug.Log($"[AvatarModel] View.loadingVisual on {gameObject} is missing?");
             }
             else
             {
@@ -67,8 +66,18 @@ namespace com.outrealxr.avatars
 
         public void Apply(int type, string url)
         {
-            if (gameObject.activeInHierarchy) AvatarsProvider.instance.LoadAvatar(this, type, url);
-            else Complete(current);
+            if (gameObject.activeInHierarchy) {
+                if(view.queuedVisual) view.queuedVisual.SetActive(false);
+                if(view.loadingVisual) view.loadingVisual.SetActive(true);
+
+                AvatarsProvider.instance.LoadAvatar(this, type, url);
+            } else Complete(current);
+        }
+
+        public void Dequeue() {
+            if(view.dequeuedVisual) view.dequeuedVisual.SetActive(true);
+            if(view.loadingVisual) view.loadingVisual.SetActive(false);
+            if(view.queuedVisual) view.queuedVisual.SetActive(false);
         }
 
         public void FreeUpAvatar() {
@@ -88,6 +97,10 @@ namespace com.outrealxr.avatars
         [SerializeField] private UnityEvent OnAvatarComplete;
         public void Complete(Avatar avatar) {
             FreeUpAvatar();
+            
+            if(view.dequeuedVisual) view.dequeuedVisual.SetActive(false);
+            if(view.loadingVisual) view.loadingVisual.SetActive(false);
+            if(view.queuedVisual) view.queuedVisual.SetActive(false);
             
             current = avatar;
             if (current) {

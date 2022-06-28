@@ -42,7 +42,7 @@ namespace com.outrealxr.avatars
             });
 
             if (queue.Count > queueLimit)
-                queue.Dequeue();
+                queue.Dequeue().model.Dequeue();
             
             if (queue.Count == 1)
                 TryNext();
