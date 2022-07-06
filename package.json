@@ -1,6 +1,6 @@
 {
   "name": "com.outrealxr.avatars",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "displayName": "Avatars Management",
   "unity": "2020.3",
   "keywords": [
@@ -15,5 +15,12 @@
   "dependencies": {
     "com.unity.addressables": "1.19.18"
   },
+  "samples": [
+    {
+      "displayName": "Avatars URP",
+      "description": "Contains basic animation with robots",
+      "path": "Samples/URP"
+    }
+  ],
   "hideInEditor": false
 }
