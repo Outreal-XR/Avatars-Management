@@ -53,7 +53,7 @@ namespace com.outrealxr.avatars
             //Reorganize the object hierarchy to fit the RPM avatar 
             var armature = new GameObject("Armature");
             armature.transform.SetParent(obj.transform);
-            var hips = obj.transform.Find("Hips");
+            var hips = gltfHolder.transform.GetChild(0).transform.Find("Hips");
             hips.SetParent(armature.transform);
             
             //Add the animator and assign the controller and avatar
