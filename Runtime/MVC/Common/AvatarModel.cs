@@ -128,5 +128,7 @@ namespace com.outrealxr.avatars
         {
             if (AvatarsProvider.instance.IsLoading(this)) AvatarsProvider.instance.currentOperation.Stop();
         }
+
+        public bool HasAvatar => current;
     }
 }

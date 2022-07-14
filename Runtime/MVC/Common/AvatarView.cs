@@ -31,7 +31,7 @@ namespace com.outrealxr.avatars
         /// </summary>
         public void RequestToReveal(string src)
         {
-            if (!loadingVisual.activeSelf) controller.UpdateModel(src);
+            if (!loadingVisual.activeSelf) controller.UpdateModel(src, true);
         }
 
         internal void Reveal()

@@ -13,13 +13,14 @@ namespace com.outrealxr.avatars
 
         public void RequestToRevealItself()
         {
-            UpdateModel(model.src);
+            UpdateModel(model.src, true);
         }
 
-        public void UpdateModel(string src)
+        public void UpdateModel(string src, bool forced)
         {
             model.SetSource(src);
-            AvatarsQueue.instance.Enqueue(model);
+            if (model.HasAvatar || forced || model.isLocal)
+                AvatarsQueue.instance.Enqueue(model);
         }
 
     }

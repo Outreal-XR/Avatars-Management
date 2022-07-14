@@ -14,8 +14,12 @@ namespace com.outrealxr.avatars
         
         public override void AddAvatar(Avatar avatar, string src) {
             if (IsPoolMaxed("")) {
-                Dispose(_avatars[0]);
-                _avatars.RemoveAt(0);
+                var i = 0;
+
+                if (_avatars[0].owner.isLocal) i++;
+                
+                Dispose(_avatars[i]);
+                _avatars.RemoveAt(i);
             }
 
             _avatars.Add(avatar);
