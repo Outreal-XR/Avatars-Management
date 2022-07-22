@@ -54,7 +54,7 @@ namespace com.outrealxr.avatars
             var armature = new GameObject("Armature");
             armature.transform.SetParent(obj.transform);
             var hips = gltfHolder.transform.GetChild(0).transform.Find("Hips");
-            if (hips == null) obj.transform.Find("Hips");
+            if (hips == null) hips = obj.transform.Find("Hips");
             hips.SetParent(armature.transform);
             
             //Add the animator and assign the controller and avatar
