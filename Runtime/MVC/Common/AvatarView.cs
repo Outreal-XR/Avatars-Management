@@ -43,7 +43,6 @@ namespace com.outrealxr.avatars
             
             if (userTag) {
                 userTag.SetActive(!avatar.isProp);
-                print(!avatar.isProp);
             }
             
             OnReveal.Invoke();
