@@ -108,7 +108,7 @@ namespace com.outrealxr.avatars
                 playerAnimation?.ReadUserVariable();
             }
             SetIsLoading(false);
-            
+
             OnAvatarComplete?.Invoke();
 
             AvatarsQueue.instance.TryNext();
@@ -116,7 +116,7 @@ namespace com.outrealxr.avatars
 
         public void AvatarAssigned()
         {
-            view.Reveal();
+            view.Reveal(current);
         }
 
         public void AvatarRemoved()

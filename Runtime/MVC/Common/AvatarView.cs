@@ -10,7 +10,7 @@ namespace com.outrealxr.avatars
     {
         AvatarController controller;
 
-        public Avatar avatar { get; private set; }
+        public Avatar avatar;
 
         public TextMeshPro progressText;
         public GameObject loadingVisual, queuedVisual, dequeuedVisual, userTag;
@@ -34,20 +34,21 @@ namespace com.outrealxr.avatars
             if (!loadingVisual.activeSelf) controller.UpdateModel(src, true);
         }
 
-        internal void Reveal()
-        {
-            avatar = GetComponentInChildren<Avatar>();
+        internal void Reveal(Avatar avatar) {
+            this.avatar = avatar;
             if (avatar == null) return;
-            
+
             var animator = avatar.GetComponent<Animator>();
-            if (animator != null) 
-                animator.applyRootMotion = false;
+            if (animator != null) animator.applyRootMotion = false;
             
-            if (userTag)
+            if (userTag) {
                 userTag.SetActive(!avatar.isProp);
+                print(!avatar.isProp);
+            }
             
             OnReveal.Invoke();
         }
+
 
         internal void Conceal()
         {
