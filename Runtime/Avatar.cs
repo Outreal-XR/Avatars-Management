@@ -6,6 +6,7 @@ namespace com.outrealxr.avatars
     {
         public AvatarModel owner;
         public int type;
+        public bool isProp;
 
         public void SetOwner(AvatarModel owner)
         {

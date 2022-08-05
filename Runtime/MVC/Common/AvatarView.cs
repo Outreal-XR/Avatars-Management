@@ -13,9 +13,9 @@ namespace com.outrealxr.avatars
         public Avatar avatar { get; private set; }
 
         public TextMeshPro progressText;
-        public GameObject loadingVisual, queuedVisual, dequeuedVisual;
+        public GameObject loadingVisual, queuedVisual, dequeuedVisual, userTag;
         public UnityEvent OnReveal, OnConceal;
-
+        
         private void Awake()
         {
             controller = GetComponent<AvatarController>();
@@ -38,15 +38,24 @@ namespace com.outrealxr.avatars
         {
             avatar = GetComponentInChildren<Avatar>();
             if (avatar == null) return;
+            
             var animator = avatar.GetComponent<Animator>();
-            if (animator == null) return;
-            animator.applyRootMotion = false;
+            if (animator != null) 
+                animator.applyRootMotion = false;
+            
+            if (userTag)
+                userTag.SetActive(!avatar.isProp);
+            
             OnReveal.Invoke();
         }
 
         internal void Conceal()
         {
             avatar = null;
+            
+            if (userTag)
+                userTag.SetActive(true);
+            
             OnConceal.Invoke();
         }
     }
