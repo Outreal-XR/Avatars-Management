@@ -16,7 +16,6 @@ namespace com.outrealxr.avatars
         public float AnimSpeedMultiplier = 1;
         public float LerpSpeed = 25f;
         public TimeType timeType;
-        public bool isJumping;
         [SerializeField] Animator animator = null;
         Vector3 previousPosition = Vector3.zero;
 
