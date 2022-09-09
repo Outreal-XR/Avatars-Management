@@ -6,7 +6,6 @@ namespace com.outrealxr.avatars
     {
         public CanvasGroup canvasGroup;
         public GameObject view;
-        public bool loadFromPlayerPrefs;
 
         public static AvatarLocalView instance;
 
@@ -17,9 +16,7 @@ namespace com.outrealxr.avatars
 
         private void Start()
         {
-            if(loadFromPlayerPrefs && PlayerPrefs.HasKey(AvatarLocalController.PreKey))
-                AvatarLocalController.instance.UpdateLocalModel(PlayerPrefs.GetString(AvatarLocalController.PreKey));
-            view.SetActive(!PlayerPrefs.HasKey(AvatarLocalController.PreKey) && AvatarLocalController.promptUserOnStart);
+            view.SetActive(!AvatarLocalController.instance.IsAvatarSet());
         }
 
         private void Update()
@@ -30,7 +27,6 @@ namespace com.outrealxr.avatars
         public void Select(string src)
         {
             AvatarLocalController.instance.UpdateLocalModel(src);
-            PlayerPrefs.SetString(AvatarLocalController.PreKey, src);
         }
     }
 }

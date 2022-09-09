@@ -4,19 +4,14 @@ namespace com.outrealxr.avatars
 {
     public abstract class AvatarLocalController : MonoBehaviour
     {
-        public static string PreKey = "LastSelectedSrc";
         public static AvatarLocalController instance;
-        public static bool promptUserOnStart = true;
 
         private void Awake()
         {
             instance = this;
         }
 
-        public void SetPromptUserOnStart(bool val)
-        {
-            promptUserOnStart = val;
-        }
+        public abstract bool IsAvatarSet();
 
         public abstract void UpdateLocalModel(string src);
 
