@@ -23,7 +23,7 @@ namespace com.outrealxr.avatars
         [SerializeField] private AvatarsProvider provider;
         
         [SerializeField] private int queueLimit = 5;
-        
+
         private void Awake()
         {
             instance = this;

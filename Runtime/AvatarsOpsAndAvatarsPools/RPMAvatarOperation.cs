@@ -39,7 +39,7 @@ namespace com.outrealxr.avatars
                 timeWaited += 0.2f;
 
                 //If we dont get the model in time, just dispose and delete it.
-                if (timeWaited > 5f) {
+                if (timeWaited > 30f) {
                     gltfAsset.Dispose();
                     Destroy(gltfHolder.gameObject);
                     OnLoadFailed(model);
@@ -55,6 +55,8 @@ namespace com.outrealxr.avatars
             armature.transform.SetParent(obj.transform);
             var hips = gltfHolder.transform.GetChild(0).transform.Find("Hips");
             if (hips == null) hips = obj.transform.Find("Hips");
+            if (hips == null) hips = gltfHolder.transform.GetChild(0).transform.Find("Avatar");
+            if (hips == null) hips = obj.transform.Find("Avatar");
             hips.SetParent(armature.transform);
             
             //Add the animator and assign the controller and avatar
