@@ -47,28 +47,16 @@ namespace com.outrealxr.avatars
                 }
             }
 
-            var obj = gltfHolder.transform.GetChild(0).GetChild(0).gameObject;
-            obj.name = "Avatar";
-            
-            //Reorganize the object hierarchy to fit the RPM avatar 
-            var armature = new GameObject("Armature");
-            armature.transform.SetParent(obj.transform);
-            var hips = gltfHolder.transform.GetChild(0).transform.Find("Hips");
-            if (hips == null) hips = obj.transform.Find("Hips");
-            if (hips == null) hips = gltfHolder.transform.GetChild(0).transform.Find("Avatar");
-            if (hips == null) hips = obj.transform.Find("Avatar");
-            hips.SetParent(armature.transform);
-            
             //Add the animator and assign the controller and avatar
-            var animator = obj.AddComponent<Animator>();
+            var animator = gltfHolder.AddComponent<Animator>();
             animator.runtimeAnimatorController = runtimeAnimatorController;
             animator.avatar = animationAvatar;
             
-            var avatar = obj.AddComponent<Avatar>();
+            var avatar = gltfHolder.AddComponent<Avatar>();
             avatar.SetOwner(model);
             avatar.type = AvatarsProvider.instance.avatarLoadingOperations.IndexOf(this);
 
-            obj.AddComponent<AnimatorParameters>();
+            gltfHolder.AddComponent<AnimatorParameters>();
 
             Debug.Log($"[RPMAvatarOperation] Loaded {model.src}");
             avatarsPool.AddAvatar(avatar, src);
