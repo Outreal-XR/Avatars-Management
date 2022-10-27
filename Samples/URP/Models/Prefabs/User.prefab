@@ -266,10 +266,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0da20dbdd3bf91549920320093ca5b58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  avatar: {fileID: 0}
   progressText: {fileID: 4227529286712259523}
   loadingVisual: {fileID: 4227529286712259525}
   queuedVisual: {fileID: 4227529286486676637}
   dequeuedVisual: {fileID: 510921780068644461}
+  userTag: {fileID: 0}
   OnReveal:
     m_PersistentCalls:
       m_Calls:
@@ -672,7 +674,7 @@ Transform:
   m_GameObject: {fileID: 5325919157038383879}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.86742, y: 0.86742, z: 0.86742}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4227529286283254989}
