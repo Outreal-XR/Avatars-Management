@@ -24,6 +24,8 @@ namespace com.outrealxr.avatars
         
         [SerializeField] private int queueLimit = 5;
 
+        public bool IsPoolMaxed(int type, string src) => provider.avatarLoadingOperations[type].avatarsPool.IsPoolMaxed(src);
+
         private void Awake()
         {
             instance = this;
