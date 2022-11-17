@@ -65,7 +65,7 @@ namespace com.outrealxr.avatars
             yield return handle;
 
             var started = Time.time;
-            yield return new WaitWhile(() => Time.time <= started + timeout);
+            yield return new WaitWhile(() => Time.time <= started + timeout && gltfHolder.transform.childCount == 0);
             if (gltfHolder.transform.childCount == 0) {
                 gltfAsset.Dispose();
                 Destroy(gltfHolder.gameObject);
