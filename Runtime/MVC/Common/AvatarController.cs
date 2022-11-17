@@ -13,19 +13,14 @@ namespace com.outrealxr.avatars
 
         public void RequestToRevealItself()
         {
-            UpdateModel(model.src, true);
+            UpdateModel(model.src);
         }
 
-        public void UpdateModel(string src, bool forced)
+        public void UpdateModel(string src)
         {
             model.SetSource(src);
-
-            if (model.type == 0)
-                forced = true;
-            else if (model.type == 1) 
-                forced = !AvatarsQueue.instance.IsPoolMaxed(model.type, model.src);
             
-            if (model.HasAvatar || forced || model.isLocal)
+            if (!model.HasAvatar || model.isLocal)
                 AvatarsQueue.instance.Enqueue(model);
         }
 

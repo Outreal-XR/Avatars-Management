@@ -24,19 +24,13 @@ namespace com.outrealxr.avatars
         }
 
         public void Reveal() {
-            if (view.avatar == null)
-                view.RequestToReveal(src);
+            if (view.avatar == null && !isLoading) view.RequestToReveal(src);
         }
 
         public void SetIsLocal(bool val)
         {
             isLocal = val;
             if (isLocal) instance = this;
-        }
-
-        public void UpdateLoading(float amount)
-        {
-            view.progressText.text = $"{amount:P2}";
         }
 
         public void SetSource(string src)
@@ -53,7 +47,6 @@ namespace com.outrealxr.avatars
         {
             if (view)
             {
-                if(view.dequeuedVisual) view.dequeuedVisual.SetActive(false);
                 if(view.queuedVisual) view.queuedVisual.SetActive(val);
                 else Debug.Log($"[AvatarModel] View.waitingVisual on {gameObject} is missing?");
             }
@@ -75,9 +68,8 @@ namespace com.outrealxr.avatars
         }
 
         public void Dequeue() {
-            if(view.dequeuedVisual) view.dequeuedVisual.SetActive(true);
             if(view.loadingVisual) view.loadingVisual.SetActive(false);
-            if(view.queuedVisual) view.queuedVisual.SetActive(false);
+            SetIsLoading(false);
         }
 
         public void FreeUpAvatar() {
@@ -98,7 +90,6 @@ namespace com.outrealxr.avatars
         public void Complete(Avatar avatar) {
             FreeUpAvatar();
             
-            if(view.dequeuedVisual) view.dequeuedVisual.SetActive(false);
             if(view.loadingVisual) view.loadingVisual.SetActive(false);
             if(view.queuedVisual) view.queuedVisual.SetActive(false);
             

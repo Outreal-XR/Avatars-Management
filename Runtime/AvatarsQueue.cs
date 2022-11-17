@@ -42,9 +42,13 @@ namespace com.outrealxr.avatars
                 url = model.src,
                 model = model
             });
+            Debug.Log("[AvatarsQueue] Queued");
 
             if (queue.Count > queueLimit)
+            {
                 queue.Dequeue().model.Dequeue();
+                Debug.Log($"[AvatarsQueue] Queue was {queueLimit}, removed removed pending");
+            }
             
             if (queue.Count == 1)
                 TryNext();

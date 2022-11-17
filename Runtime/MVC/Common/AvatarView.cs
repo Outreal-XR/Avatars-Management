@@ -12,8 +12,7 @@ namespace com.outrealxr.avatars
 
         public Avatar avatar;
 
-        public TextMeshPro progressText;
-        public GameObject loadingVisual, queuedVisual, dequeuedVisual, userTag;
+        public GameObject loadingVisual, queuedVisual, userTag;
         public UnityEvent OnReveal, OnConceal;
         
         private void Awake()
@@ -21,17 +20,12 @@ namespace com.outrealxr.avatars
             controller = GetComponent<AvatarController>();
         }
 
-        private void Start()
-        {
-            if(progressText == null) progressText = GetComponentInChildren<TextMeshPro>();
-        }
-
         /// <summary>
         /// Must be called by input system whenever user hovers mouse on a collider of avatar
         /// </summary>
         public void RequestToReveal(string src)
         {
-            if (!loadingVisual.activeSelf) controller.UpdateModel(src, true);
+            if (!loadingVisual.activeSelf) controller.UpdateModel(src);
         }
 
         internal void Reveal(Avatar avatar) {

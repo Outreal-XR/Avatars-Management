@@ -6,6 +6,29 @@ namespace com.outrealxr.avatars
 {
     public class RPMAvatarOperation : AvatarLoadingOperation
     {
+
+        public enum SupportedLOD
+        {
+            High = 0,
+            Medium = 1,
+            Low = 2
+        }
+
+        public enum SupportedResolutions
+        {
+            Low = 1,
+            Medium = 2,
+            High = 4,
+            Highest = 8
+        }
+
+        public enum Atlas
+        {
+            LowRes = 1,
+            MediumRes = 2,
+            HighRes = 4
+        }
+
         [SerializeField] private string defaultKey = "yBot";
         private Coroutine _coroutine;
 
@@ -13,7 +36,12 @@ namespace com.outrealxr.avatars
         [SerializeField] private AddressableAvatarOperation addressableAvatarOperation;
 
         [SerializeField] private UnityEngine.Avatar animationAvatar;
-        
+        [SerializeField] private float timeout = 60;
+
+        public SupportedLOD lod = SupportedLOD.Low;
+        public SupportedResolutions resolution = SupportedResolutions.Low;
+        public Atlas atlasResolution = Atlas.LowRes;
+
         private void Awake()
         {
             avatarsPool = GetComponent<RPMAvatarPool>();
@@ -29,22 +57,20 @@ namespace com.outrealxr.avatars
             
             gltfHolder.transform.SetParent(model.transform);
             gltfHolder.transform.localPosition = Vector3.zero;
-            
+
+            src += $"?meshLoad={(int) lod}&textureAtlas={(int) atlasResolution * 256}&textureSizeLimit={(int) resolution * 256}&morphTargets=none&useDracoMeshCompression=true&useHands=false";
+            model.src = src;
+
             var handle = gltfAsset.Load(src);
             yield return handle;
 
-            var timeWaited = 0f;
-            while (gltfHolder.transform.childCount == 0) {
-                yield return new WaitForSeconds(0.2f);
-                timeWaited += 0.2f;
-
-                //If we dont get the model in time, just dispose and delete it.
-                if (timeWaited > 30f) {
-                    gltfAsset.Dispose();
-                    Destroy(gltfHolder.gameObject);
-                    OnLoadFailed(model);
-                    yield break;
-                }
+            var started = Time.time;
+            yield return new WaitWhile(() => Time.time <= started + timeout);
+            if (gltfHolder.transform.childCount == 0) {
+                gltfAsset.Dispose();
+                Destroy(gltfHolder.gameObject);
+                OnLoadFailed(model);
+                yield break;
             }
 
             //Add the animator and assign the controller and avatar
