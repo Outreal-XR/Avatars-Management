@@ -13,6 +13,7 @@ namespace com.outrealxr.avatars.revised
 
         AvatarModel current;
 #if UNITY_EDITOR
+        public bool ShowGUI;
         AvatarModel[] queueArray;
 #endif
         Queue<AvatarModel> queue = new();
@@ -30,7 +31,9 @@ namespace com.outrealxr.avatars.revised
             if (operation != null && operation.running) return;
             current = queue.Dequeue();
             current.Dequeued();
+#if UNITY_EDITOR
             queueArray = queue.ToArray();
+#endif
             operation = addressableAvatarOperation;
             if (string.IsNullOrWhiteSpace(current.src)) Debug.LogError("[AvatarsQueue] AvatarModel.src can't be empty");
             if (current.src.EndsWith("glb") || current.src.EndsWith("gltf")) operation = gltfAvatarOperation;
@@ -53,7 +56,7 @@ namespace com.outrealxr.avatars.revised
 #if UNITY_EDITOR
         void OnGUI()
         {
-            if (queueArray != null)
+            if (ShowGUI && queueArray != null)
             {
                 // Make a background box
                 GUI.Box(new Rect(32, 32, 512, 64 + 32 * queueArray.Length), "Queue");
