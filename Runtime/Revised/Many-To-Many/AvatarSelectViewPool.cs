@@ -11,9 +11,12 @@ namespace com.outrealxr.avatars.ManyToMany
         [SerializeField] private Transform _viewParent;
 
         private IObjectPool<AvatarSelectView> _pool;
-        private List<AvatarSelectView> _active;
+        private readonly List<AvatarSelectView> _active = new ();
+
+        public static AvatarSelectViewPool Instance { get; private set; }
 
         private void Awake() {
+            Instance = this;
             _pool = new ObjectPool<AvatarSelectView>(CreateView, GetView, ReleaseView);
         }
 
