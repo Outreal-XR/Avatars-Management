@@ -7,7 +7,7 @@ namespace com.outrealxr.avatars.revised
         State state;
         public GameObject loading, queue, placeholder;
         public UnityEngine.Events.UnityEvent OnReveal, OnConceal;
-        AvatarModel model;
+        private AvatarModel _model;
 
         void OnEnable()
         {
@@ -15,11 +15,10 @@ namespace com.outrealxr.avatars.revised
             Reveal();
         }
 
-        public void SetModel(AvatarModel model)
-        {
-            this.model = model;
-        }
+        public void SetModel(AvatarModel model) => _model = model;
 
+        public AvatarModel Model => _model;
+        
         public void SetState(State state)
         {
             loading.SetActive(state == State.Loading);
@@ -35,7 +34,7 @@ namespace com.outrealxr.avatars.revised
         /// </summary>
         public void Reveal()
         {
-            if(model != null && state != State.Queued) AvatarsQueue.instance.Enqueue(model);
+            if(_model != null && state != State.Queued) AvatarsQueue.instance.Enqueue(_model);
         }
     }
 }

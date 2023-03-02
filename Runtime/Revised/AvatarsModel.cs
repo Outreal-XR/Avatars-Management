@@ -5,16 +5,15 @@ namespace com.outrealxr.avatars.revised
 {
     public class AvatarsModel : MonoBehaviour
     {
-        public Dictionary<int, AvatarModel> avatars = new Dictionary<int, AvatarModel>();
+        private readonly Dictionary<int, AvatarModel> _avatars = new ();
 
-        public void UpdateAvatarModel(int id, AvatarView view, string src)
-        {
-            if (!avatars.ContainsKey(id))
-            {
-                avatars.Add(id, new AvatarModel(src, view));
-                view.SetModel(avatars[id]);
+        public void UpdateAvatarModel(int id, AvatarView view, string src) {
+            if (!_avatars.ContainsKey(id)) {
+                var model = view.Model ?? new AvatarModel(src, view);
+                _avatars.Add(id, model);
+                view.SetModel(_avatars[id]);
             }
-            avatars[id].SetSource(src);
+            _avatars[id].SetSource(src);
         }
     }
 }
