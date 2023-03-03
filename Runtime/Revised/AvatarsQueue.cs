@@ -10,6 +10,8 @@ namespace com.outrealxr.avatars.revised
         public AddressableAvatarOperation addressableAvatarOperation;
         public int maxQueue = 25;
         AvatarLoadingOperation operation;
+        [SerializeField] private TMPro.TextMeshProUGUI _text;
+
 
         AvatarModel current;
 #if UNITY_EDITOR
@@ -27,8 +29,14 @@ namespace com.outrealxr.avatars.revised
 
         void Update()
         {
+            _text.gameObject.SetActive(false);
+
             if (queue.Count == 0) return;
-            if (operation != null && operation.running) return;
+            if (operation != null && operation.running) {
+                _text.gameObject.SetActive(true);
+                _text.text = $"Loading: {current.src} - {operation.Percent}%";
+                return;
+            }
             current = queue.Dequeue();
             current.Dequeued();
 #if UNITY_EDITOR
@@ -50,6 +58,7 @@ namespace com.outrealxr.avatars.revised
         {
             queue.Enqueue(model);
             model.Queued();
+            
             if (queue.Count >= maxQueue) queue.Dequeue().SetAvatar(null);
         }
 
